@@ -12,7 +12,6 @@
 	</head>
 	
 	<body>
-		<p>test</p>
 		<?php
 			echo $xhtml;
 		?>
