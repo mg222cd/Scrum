@@ -25,7 +25,35 @@
 		 * @return mysqli_stmt
 		 */
 		 public function Prepare($sql) {
-		 	
+		 	$stmt = $this->m_mysqli->prepare($sql);
+				if ($stmt === FALSE) {
+					throw new Exception("Prepare of '$sql' failed" . $this->m_mysqli->error);
+					return FALSE;
+				}
+			return $stmt;
+		 }
+		 
+		 public function RunAndFetchObjects($stmt, $className) {
+		 	$result = $this->m_mysqli->query($stmt);
+			$ret = array();
+				while ($row = $result->fetch_assoc()) {
+					$ret[] = $row;
+				}
+			return $ret;
+		 }
+		 
+		 public function RunAndFetchResult(mysqli_stmt $a_stmt) {
+		 	$result = null;
+			$a_stmt->execute();
+			$a_stmt->store_result();
+			
+				if ($a_stmt->fetch()) {
+					return FALSE;
+				}
+				else {
+					return TRUE;
+				}
+			$a_stmt->close();
 		 }
 	}
 ?>

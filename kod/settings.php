@@ -4,6 +4,6 @@
 	const DBPASSWORD = "root";
 	const DBUSER = "root";
 	const DATABASE = "Scrum";
-	const DBTABLEPREFIX = "members_";	
+	//const DBTABLEPREFIX = "members_";	
  }
 ?>

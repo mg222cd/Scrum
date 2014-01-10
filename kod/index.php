@@ -1,5 +1,5 @@
 <?php
-	require_once ("MasterController.php");
+	require_once("MasterController.php");
 	$masterController = new MasterController();
 	$xhtml = $masterController->DoControll();
 ?>
