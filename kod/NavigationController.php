@@ -12,7 +12,15 @@
 		}
 		
 		public function DoControll() {
+			$xhtml = "<h3>Labb 5 - Scrum</h3>";
 			
+			$memberView = new MemberView();
+			$listView = new ListView();
+			$navigationView = new NavigationView();
+			
+			
+			
+			return $xhtml;
 		}
 	}
 ?>
