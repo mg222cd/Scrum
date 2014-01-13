@@ -33,14 +33,39 @@
 		
 		public function TriedToGenerateFullList() {
 			if (isset($_POST[$this->m_getFullListButton]) == TRUE ) {
-				return TRUE
+				return TRUE;
 			}
 			else {
 				return FALSE;
 			}
 		}
 		
+		public function TriedToEditMember() {
+			if (isset($_POST[$this->m_getEditMemberButton]) == TRUE) {
+				return TRUE;
+			}
+			else {
+				return FALSE;
+			}
+		}
 		
+		public function TriedToDeleteMember() {
+			if (isset($_POST[$this->m_getDeleteMemberButton]) == TRUE) {
+				return TRUE;
+			}
+			else {
+				return FALSE;
+			}
+		}
+		
+		public function TriedToViewMember() {
+			if (isset($_POST[$this->m_getViewMemberButton]) == TRUE) {
+				return TRUE;
+			}
+			else {
+				return FALSE;
+			}
+		}
 	
 
 	}
