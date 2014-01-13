@@ -18,8 +18,11 @@
 			$listView = new ListView();
 			$navigationView = new NavigationView();
 			
+			if ($navigationView->TriedToRegisterMember() == TRUE) {
+				$xhtml .= $memberView->DoRegisterView();
+			}
 			
-			
+			//sist
 			return $xhtml;
 		}
 	}
