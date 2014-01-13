@@ -22,5 +22,26 @@
 			";
 		}
 		
+		public function TriedToRegisterMember() {
+			if (isset($_POST[$this->m_getRegisterButton]) == TRUE) {
+				return TRUE;
+			}
+			else {
+				return FALSE;
+			}
+		}
+		
+		public function TriedToGenerateFullList() {
+			if (isset($_POST[$this->m_getFullListButton]) == TRUE ) {
+				return TRUE
+			}
+			else {
+				return FALSE;
+			}
+		}
+		
+		
+	
+
 	}
 ?>
