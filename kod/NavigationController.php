@@ -21,6 +21,19 @@
 			if ($navigationView->TriedToRegisterMember() == TRUE) {
 				$xhtml .= $memberView->DoRegisterView();
 			}
+			elseif ($navigationView->TriedToEditMember() == TRUE) {
+				$xhtml .= $memberView->DoEditView();
+			}
+			elseif ($navigationView->TriedToDeleteMember()) {
+				$xhtml .= $memberView->DoDelete();
+			}
+			elseif ($navigationView->TriedToViewMember()) {
+				$xhtml .= $memberView->DoViewMember();
+			}
+			//eller tryckt på listan?
+			else {
+				$xhtml .= $navigationView->ShowStartButtons();
+			}
 			
 			//sist
 			return $xhtml;
