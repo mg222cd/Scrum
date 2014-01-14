@@ -21,6 +21,9 @@
 			if ($navigationView->TriedToRegisterMember() == TRUE) {
 				$xhtml .= $memberView->DoRegisterView();
 			}
+			//elseif ($navigationView->TriedToGenerateFullList() == TRUE) {
+			//	$xhtml .= $listView->GenerateMemberList($this->m_member->)
+			//}
 			elseif ($navigationView->TriedToEditMember() == TRUE) {
 				$xhtml .= $memberView->DoEditView();
 			}
@@ -30,9 +33,16 @@
 			elseif ($navigationView->TriedToViewMember()) {
 				$xhtml .= $memberView->DoViewMember();
 			}
-			//eller tryckt på listan?
 			else {
 				$xhtml .= $navigationView->ShowStartButtons();
+			}
+			
+			if ($memberView->TriedToRegister()) {
+				try	{
+					$this->m_member->CreateMember($memberView->GetFirstName(), $memberView->GetLastName(), $memberView->GetPhone());
+				} catch (Exception $e) {
+					throw new Exception("Något gick fel vid CreateMember");
+				}
 			}
 			
 			//sist
