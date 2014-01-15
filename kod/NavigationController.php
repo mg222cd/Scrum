@@ -21,9 +21,9 @@
 			if ($navigationView->TriedToRegisterMember() == TRUE) {
 				$xhtml .= $memberView->DoRegisterView();
 			}
-			//elseif ($navigationView->TriedToGenerateFullList() == TRUE) {
-			//	$xhtml .= $listView->GenerateMemberList($this->m_member->)
-			//}
+			elseif ($navigationView->TriedToGenerateFullList() == TRUE) {
+				$xhtml .=$listView->GenerateMemberList($this->m_member->GetFullMemberList());
+			}
 			elseif ($navigationView->TriedToEditMember() == TRUE) {
 				$xhtml .= $memberView->DoEditView();
 			}
@@ -41,10 +41,36 @@
 				try	{
 					$this->m_member->CreateMember($memberView->GetFirstName(), $memberView->GetLastName(), $memberView->GetPhone());
 				} catch (Exception $e) {
-					throw new Exception($e->getMessage()); 
+					//throw new Exception($e->getMessage());
+					throw new Exception ("Kunde inte skapa ny medlem"); 
 				}
 			}
 			
+			if ($memberView->TriedToEdit()) {
+				try	{
+					$this->m_member->EditMember($memberView->GetMemberId(), $memberView->GetFirstName(), $memberView->GetLastName(), $memberView->GetPhone());
+				} catch (Exception $e) {
+					//throw new Exception($e->getMessage());
+					throw new Exception ("Kunde inte ändra medlem"); 
+				}
+			}
+			
+			if ($memberView->TriedToDelete()) {
+				try	{//$xhtml .= "går in i delete";
+					$this->m_member->DeleteMember($memberView->GetMemberId());
+				} catch (Exception $e) {
+					//throw new Exception($e->getMessage());
+					throw new Exception ("Kunde inte radera medlem"); 
+				}
+			}
+			
+			if ($memberView->TriedToView()) {
+				try	{$xhtml .= $listView->GenerateMemberList($this->m_member->GetMemberById($memberView->GetMemberId()));
+				} catch (Exception $e) {
+					//throw new Exception($e->getMessage());
+					throw new Exception ("Kunde inte visa medlem"); 
+				}
+			}
 			//sist
 			return $xhtml;
 		}

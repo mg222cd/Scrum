@@ -25,8 +25,14 @@
 			//$dbConnection->Close();
 		}
 		
+		public function GetFullMemberList() {
+			$sql = "SELECT memberId as Medlemsnummer, firstName as Förnamn, lastName as Efternamn, phone as Telefon FROM $this->m_memberTableName";
+			$stmt = $this->m_dbConnection->Prepare($sql);
+			return $this->RunAndFetchObjects($sql);
+		}
+		
 		public function EditMember($m_memberId, $m_firstName, $m_lastname, $m_phone) {
-			$sql = "UPDATE $this->m_memberTableName SET m_firstName=?, m_lastName=?, m_phone=? WHERE m_memberId=?";
+			$sql = "UPDATE $this->m_memberTableName SET firstName=?, lastName=?, phone=? WHERE memberId=?";
 			$stmt = $this->m_dbConnection->Prepare($sql);
 			$stmt->bind_param("sssi", $m_firstName, $m_lastname, $m_phone, $m_memberId);
 			if ($stmt->execute()) {
@@ -38,10 +44,10 @@
 			}
 		}
 		
-		public function DeleteMember($m_memberId) {
-			$sql = "DELETE FROM $this->m_memberTableName WHERE m_memberId=?";
+		public function DeleteMember($memberId) {
+			$sql = "DELETE FROM $this->m_memberTableName WHERE memberId=?";
 			$stmt = $this->m_dbConnection->Prepare($sql);
-			$stmt->bind_param("i", $m_memberId);
+			$stmt->bind_param("i", $memberId);
 			if ($stmt->execute()) {
 				$stmt->close();
 				return TRUE;
@@ -49,6 +55,15 @@
 			else {
 				return FALSE;
 			}
+		}
+		
+		public function GetMemberById($memberId) {
+			$sql = "SELECT memberId, firstName, lastName, phone FROM $this->m_memberTableName WHERE memberId=$memberId";
+			return $this->RunAndFetchObjects($sql);
+		}
+		
+		private function RunAndFetchObjects($a_stmt) {
+			return $this->m_dbConnection->RunAndFetchObjects($a_stmt, "Member");
 		}
 		
 		

@@ -26,7 +26,7 @@
 		
 		public function DoEditView() {
 			return"
-			<h2>Ä medlem</h2>
+			<h2>Ändra medlem</h2>
 			<form method='POST'>
 				<fieldset>
 					<legend>Ändra medlem</legend>
@@ -47,7 +47,7 @@
 				<fieldset>
 					<legend>Skriv in id</legend>
 					<p><label>Medlemsnummer:</label> <input type='text' name='$this->m_getMemberId' id='memberId' /></p>
-					<p><input type='submit' value='Radera medlem' name'$this->m_getDelete' id='delete' />
+					<p><input type='submit' value='Radera medlem' name='$this->m_getDelete' id='delete' /></p>
 				</fieldset>
 			</form>
 			";
@@ -60,7 +60,7 @@
 				<fieldset>
 					<legend>Skriv in id</legend>
 					<p><label>Medlemsnummer:</label> <input type='text' name='$this->m_getMemberId' id='memberId' /></p>
-					<p><input type='submit' value='Visa medlem' name'$this->m_getMemberButton' id='register' />
+					<p><input type='submit' value='Visa medlem' name='$this->m_getMemberButton' id='memberButton' /></p>
 				</fieldset>
 			</form>
 			";
