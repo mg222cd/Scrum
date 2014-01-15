@@ -10,7 +10,7 @@
 		}
 		
 		public function CreateMember($m_firstName, $m_lastName, $m_phone) {
-			$sql = "INSERT INTO $this->m_memberTableName(m_memberId, m_firstName, m_lastName, m_phone) VALUES(NULL, ?, ?, ?)";
+			$sql = "INSERT INTO $this->m_memberTableName(memberId, firstName, lastName, phone) VALUES(NULL, ?, ?, ?)";
 			$stmt = $this->m_dbConnection->Prepare($sql); //analyserar och förbereder
 			$stmt->bind_param("sss", $m_firstName, $m_lastName, $m_phone); //binder parametrar
 			if ($stmt->execute()) {
@@ -21,8 +21,12 @@
 				$stmt->close();
 				return FALSE;
 			}
-			//ta bort nedanstående???
-		//	$this->m_dbConnection->Close();
+			//ta bort?
+			//$dbConnection->Close();
+		}
+		
+		public function EditMember($m_memberId, $m_firstName, $m_lastname, $m_phone) {
+			$sql = "UPDATE $this->m_memberTableName SET m_firstName=?, m_lastName=?, m_phone=? WHERE m_memberId=?";
 		}
 		
 		

@@ -41,7 +41,7 @@
 				try	{
 					$this->m_member->CreateMember($memberView->GetFirstName(), $memberView->GetLastName(), $memberView->GetPhone());
 				} catch (Exception $e) {
-					throw new Exception("Något gick fel vid CreateMember");
+					throw new Exception($e->getMessage()); 
 				}
 			}
 			
